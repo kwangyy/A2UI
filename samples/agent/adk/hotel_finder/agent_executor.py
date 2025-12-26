@@ -104,9 +104,9 @@ class HotelAgentExecutor(AgentExecutor):
                 hotel_name = ctx.get("hotelName", "Unknown Hotel")
                 party_size = ctx.get("partySize", "Unknown Size")
                 reservation_time = ctx.get("reservationTime", "Unknown Time")
-                dietary_reqs = ctx.get("dietary", "None")
+                # dietary_reqs = ctx.get("dietary", "None")
                 image_url = ctx.get("imageUrl", "")
-                query = f"User submitted a booking for {hotel_name} for {party_size} people at {reservation_time} with dietary requirements: {dietary_reqs}. The image URL is {image_url}"
+                query = f"User submitted a booking for {hotel_name} for {party_size} people at {reservation_time}. The image URL is {image_url}"
 
             else:
                 query = f"User submitted an event: {action} with data: {ctx}"
