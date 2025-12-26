@@ -21,12 +21,12 @@ from google.adk.tools.tool_context import ToolContext
 logger = logging.getLogger(__name__)
 
 
-def get_hotels(cuisine: str, location: str,  tool_context: ToolContext, count: int = 5) -> str:
-    """Call this tool to get a list of hotels based on a cuisine and location.
+def get_hotels(location: str,  tool_context: ToolContext, count: int = 5) -> str:
+    """Call this tool to get a list of hotels based on location.
     'count' is the number of hotels to return.
     """
     logger.info(f"--- TOOL CALLED: get_hotels (count: {count}) ---")
-    logger.info(f"  - Cuisine: {cuisine}")
+    # logger.info(f"  - Cuisine: {cuisine}")
     logger.info(f"  - Location: {location}")
 
     items = []

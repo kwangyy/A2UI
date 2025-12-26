@@ -106,7 +106,7 @@ class HotelAgent:
         return LlmAgent(
             model=LiteLlm(model=LITELLM_MODEL),
             name="hotel_agent",
-            description="An agent that finds hotels and helps book tables.",
+            description="An agent that finds hotels and helps book hotel rooms.",
             instruction=instruction,
             tools=[get_hotels],
         )
