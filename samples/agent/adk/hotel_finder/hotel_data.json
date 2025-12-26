@@ -1,0 +1,84 @@
+[
+    {
+      "name": "Hilton Singapore Orchard",
+      "detail": "Modern 5-star stay right on Orchard Road (formerly Mandarin Orchard).",
+      "imageUrl": "http://localhost:10002/static/hilton.jpg",
+      "rating": "★★★★★",
+      "infoLink": "[More Info](https://www.hilton.com/en/hotels/sinorhi-hilton-singapore-orchard/)",
+      "address": "333 Orchard Road, Singapore 238867"
+    },
+    {
+      "name": "InterContinental Singapore",
+      "detail": "Heritage-meets-luxury 5-star hotel in Bugis for shopping + culture access.",
+      "imageUrl": "http://localhost:10002/static/intercontinental.jpg",
+      "rating": "★★★★★",
+      "infoLink": "[More Info](https://www.ihg.com/intercontinental/hotels/us/en/singapore/sinhb/hoteldetail)",
+      "address": "80 Middle Road, Singapore 188966"
+    },
+    {
+      "name": "Mandarin Oriental, Singapore",
+      "detail": "Iconic 5-star Marina Bay hotel with skyline views and top-tier service.",
+      "imageUrl": "http://localhost:10002/static/mandarin_oriental.jpg",
+      "rating": "★★★★★",
+      "infoLink": "[More Info](https://www.mandarinoriental.com/en/singapore/marina-bay)",
+      "address": "5 Raffles Avenue, Singapore 039797"
+    },
+    {
+      "name": "The Fullerton Hotel Singapore",
+      "detail": "Grand riverside 5-star heritage landmark in the CBD area.",
+      "imageUrl": "http://localhost:10002/static/fullerton.jpg",
+      "rating": "★★★★★",
+      "infoLink": "[More Info](https://www.fullertonhotels.com/fullerton-hotel-singapore)",
+      "address": "1 Fullerton Square, Singapore 049178"
+    },
+    {
+      "name": "Shangri-La Singapore",
+      "detail": "Garden sanctuary 5-star resort-style hotel near Orchard/Tanglin.",
+      "imageUrl": "http://localhost:10002/static/shangrila.jpg",
+      "rating": "★★★★★",
+      "infoLink": "[More Info](https://www.shangri-la.com/singapore/shangrila/)",
+      "address": "22 Orange Grove Road, Singapore 258350"
+    },
+    {
+        "name": "YOTEL Singapore Orchard Road",
+        "detail": "Modern, tech-forward 4-star hotel with compact rooms and a rooftop pool along Orchard Road.",
+        "imageUrl": "http://localhost:10002/static/yotel.jpg",
+        "rating": "★★★★",
+        "infoLink": "[More Info](https://www.yotel.com/en/hotels/yotel-singapore)",
+        "address": "366 Orchard Road, Singapore 238904"
+    },
+    {
+        "name": "JEN Singapore Orchardgateway by Shangri-La",
+        "detail": "Stylish 4-star hotel directly above Orchard Gateway MRT with skyline rooftop pool.",
+        "imageUrl": "http://localhost:10002/static/jenjpg",
+        "rating": "★★★★",
+        "infoLink": "[More Info](https://www.shangri-la.com/en/hotels/jensingaporeorchardgateway/)",
+        "address": "277 Orchard Road, Singapore 238858"
+    },
+    {
+        "name": "Orchard Rendezvous Hotel by Far East Hospitality",
+        "detail": "Classic 4-star Orchard hotel with spacious rooms, popular for long stays and business travellers.",
+        "imageUrl": "http://localhost:10002/static/rendezvous.jpg",
+        "rating": "★★★★",
+        "infoLink": "[More Info](https://www.rendezvoushotels.com/en/hotels/orchard-rendezvous-hotel)",
+        "address": "1 Tanglin Road, Singapore 247905"
+    },
+    {
+        "name": "Holiday Inn Singapore Orchard City Centre",
+        "detail": "Reliable 4-star international hotel offering comfort, dining, and easy access to Orchard shopping.",
+        "imageUrl": "http://localhost:10002/static/holidayinn.jpg",
+        "rating": "★★★★",
+        "infoLink": "[More Info](https://www.ihg.com/holidayinn/hotels/us/en/singapore/singp/hoteldetail)",
+        "address": "11 Cavenagh Road, Singapore 229616"
+    },
+    {
+        "name": "Concorde Hotel Singapore",
+        "detail": "Established 4-star hotel near Orchard Road with large rooms and a traditional business-hotel feel.",
+        "imageUrl": "http://localhost:10002/static/concorde.jpg",
+        "rating": "★★★★",
+        "infoLink": "[More Info](https://singapore.concordehotelsresorts.com/)",
+        "address": "100 Orchard Road, Singapore 238840"
+    }
+]
+    
+  
