@@ -30,7 +30,7 @@ def get_hotels(location: str,  tool_context: ToolContext, count: int = 5) -> str
     logger.info(f"  - Location: {location}")
 
     items = []
-    if "new york" in location.lower() or "ny" in location.lower():
+    if "singapore" in location.lower() or "sg" in location.lower():
         try:
             script_dir = os.path.dirname(__file__)
             file_path = os.path.join(script_dir, "hotel_data.json")
