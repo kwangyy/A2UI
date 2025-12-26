@@ -20,6 +20,10 @@ name = "a2ui-restaurant-finder"
 directory = { path = "adk/samples/restaurant_finder", editable = true }
 
 [[packages]]
+name = "a2ui-hotel-finder"
+directory = { path = "adk/samples/hotel_finder", editable = true }
+
+[[packages]]
 name = "aiohappyeyeballs"
 version = "2.6.1"
 index = "https://pypi.org/simple"

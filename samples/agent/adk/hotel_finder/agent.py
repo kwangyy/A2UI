@@ -28,24 +28,24 @@ from google.adk.sessions import InMemorySessionService
 from google.genai import types
 from prompt_builder import (
     A2UI_SCHEMA,
-    RESTAURANT_UI_EXAMPLES,
+    HOTEL_UI_EXAMPLES,
     get_text_prompt,
     get_ui_prompt,
 )
-from tools import get_restaurants
+from tools import get_hotels
 
 logger = logging.getLogger(__name__)
 
 AGENT_INSTRUCTION = """
-    You are a helpful restaurant finding assistant. Your goal is to help users find and book restaurants using a rich UI.
+    You are a helpful hotel finding assistant. Your goal is to help users find and book hotels using a rich UI.
 
     To achieve this, you MUST follow this logic:
 
-    1.  **For finding restaurants:**
-        a. You MUST call the `get_restaurants` tool. Extract the cuisine, location, and a specific number (`count`) of restaurants from the user's query (e.g., for "top 5 chinese places", count is 5).
-        b. After receiving the data, you MUST follow the instructions precisely to generate the final a2ui UI JSON, using the appropriate UI example from the `prompt_builder.py` based on the number of restaurants.
+    1.  **For finding hotels:**
+        a. You MUST call the `get_hotels` tool. Extract the location and a specific number (`count`) of hotels from the user's query (e.g., for "top 5 places", count is 5).
+        b. After receiving the data, you MUST follow the instructions precisely to generate the final a2ui UI JSON, using the appropriate UI example from the `prompt_builder.py` based on the number of hotels.
 
-    2.  **For booking a table (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
+    2.  **For booking a room (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
         a. You MUST use the appropriate UI example from `prompt_builder.py` to generate the UI, populating the `dataModelUpdate.contents` with the details from the user's query.
 
     3.  **For confirming a booking (when you receive a query like 'User submitted a booking...'):**
@@ -53,8 +53,8 @@ AGENT_INSTRUCTION = """
 """
 
 
-class RestaurantAgent:
-    """An agent that finds restaurants based on user criteria."""
+class HotelAgent:
+    """An agent that finds hotels based on user criteria."""
 
     SUPPORTED_CONTENT_TYPES = ["text", "text/plain"]
 
@@ -89,26 +89,26 @@ class RestaurantAgent:
         # --- END MODIFICATION ---
 
     def get_processing_message(self) -> str:
-        return "Finding restaurants that match your criteria..."
+        return "Finding hotels that match your criteria..."
 
     def _build_agent(self, use_ui: bool) -> LlmAgent:
-        """Builds the LLM agent for the restaurant agent."""
+        """Builds the LLM agent for the hotel agent."""
         LITELLM_MODEL = os.getenv("LITELLM_MODEL", "gemini/gemini-2.5-flash")
 
         if use_ui:
             # Construct the full prompt with UI instructions, examples, and schema
             instruction = AGENT_INSTRUCTION + get_ui_prompt(
-                self.base_url, RESTAURANT_UI_EXAMPLES
+                self.base_url, HOTEL_UI_EXAMPLES
             )
         else:
             instruction = get_text_prompt()
 
         return LlmAgent(
             model=LiteLlm(model=LITELLM_MODEL),
-            name="restaurant_agent",
-            description="An agent that finds restaurants and helps book tables.",
+            name="hotel_agent",
+            description="An agent that finds hotels and helps book tables.",
             instruction=instruction,
-            tools=[get_restaurants],
+            tools=[get_hotels],
         )
 
     async def stream(self, query, session_id) -> AsyncIterable[dict[str, Any]]:
@@ -137,7 +137,7 @@ class RestaurantAgent:
         # Ensure schema was loaded
         if self.use_ui and self.a2ui_schema_object is None:
             logger.error(
-                "--- RestaurantAgent.stream: A2UI_SCHEMA is not loaded. "
+                "--- HotelAgent.stream: A2UI_SCHEMA is not loaded. "
                 "Cannot perform UI validation. ---"
             )
             yield {
@@ -152,7 +152,7 @@ class RestaurantAgent:
         while attempt <= max_retries:
             attempt += 1
             logger.info(
-                f"--- RestaurantAgent.stream: Attempt {attempt}/{max_retries + 1} "
+                f"--- HotelAgent.stream: Attempt {attempt}/{max_retries + 1} "
                 f"for session {session_id} ---"
             )
 
@@ -187,7 +187,7 @@ class RestaurantAgent:
 
             if final_response_content is None:
                 logger.warning(
-                    f"--- RestaurantAgent.stream: Received no final response content from runner "
+                    f"--- HotelAgent.stream: Received no final response content from runner "
                     f"(Attempt {attempt}). ---"
                 )
                 if attempt <= max_retries:
@@ -206,7 +206,7 @@ class RestaurantAgent:
 
             if self.use_ui:
                 logger.info(
-                    f"--- RestaurantAgent.stream: Validating UI response (Attempt {attempt})... ---"
+                    f"--- HotelAgent.stream: Validating UI response (Attempt {attempt})... ---"
                 )
                 try:
                     if "---a2ui_JSON---" not in final_response_content:
@@ -233,7 +233,7 @@ class RestaurantAgent:
                     # 2. Check if it validates against the A2UI_SCHEMA
                     # This will raise jsonschema.exceptions.ValidationError if it fails
                     logger.info(
-                        "--- RestaurantAgent.stream: Validating against A2UI_SCHEMA... ---"
+                        "--- HotelAgent.stream: Validating against A2UI_SCHEMA... ---"
                     )
                     jsonschema.validate(
                         instance=parsed_json_data, schema=self.a2ui_schema_object
@@ -241,7 +241,7 @@ class RestaurantAgent:
                     # --- End New Validation Steps ---
 
                     logger.info(
-                        f"--- RestaurantAgent.stream: UI JSON successfully parsed AND validated against schema. "
+                        f"--- HotelAgent.stream: UI JSON successfully parsed AND validated against schema. "
                         f"Validation OK (Attempt {attempt}). ---"
                     )
                     is_valid = True
@@ -252,7 +252,7 @@ class RestaurantAgent:
                     jsonschema.exceptions.ValidationError,
                 ) as e:
                     logger.warning(
-                        f"--- RestaurantAgent.stream: A2UI validation failed: {e} (Attempt {attempt}) ---"
+                        f"--- HotelAgent.stream: A2UI validation failed: {e} (Attempt {attempt}) ---"
                     )
                     logger.warning(
                         f"--- Failed response content: {final_response_content[:500]}... ---"
@@ -264,7 +264,7 @@ class RestaurantAgent:
 
             if is_valid:
                 logger.info(
-                    f"--- RestaurantAgent.stream: Response is valid. Sending final response (Attempt {attempt}). ---"
+                    f"--- HotelAgent.stream: Response is valid. Sending final response (Attempt {attempt}). ---"
                 )
                 logger.info(f"Final response: {final_response_content}")
                 yield {
@@ -277,7 +277,7 @@ class RestaurantAgent:
 
             if attempt <= max_retries:
                 logger.warning(
-                    f"--- RestaurantAgent.stream: Retrying... ({attempt}/{max_retries + 1}) ---"
+                    f"--- HotelAgent.stream: Retrying... ({attempt}/{max_retries + 1}) ---"
                 )
                 # Prepare the query for the retry
                 current_query_text = (
@@ -291,7 +291,7 @@ class RestaurantAgent:
 
         # --- If we're here, it means we've exhausted retries ---
         logger.error(
-            "--- RestaurantAgent.stream: Max retries exhausted. Sending text-only error. ---"
+            "--- HotelAgent.stream: Max retries exhausted. Sending text-only error. ---"
         )
         yield {
             "is_task_complete": True,

@@ -1,6 +1,6 @@
-# A2UI Restaurant finder and table reservation agent sample.
+# A2UI Hotel finder and table reservation agent sample.
 
-This sample uses the Agent Development Kit (ADK) along with the A2A protocol to create a simple "Restaurant finder and table reservation" agent that is hosted as an A2A server.
+This sample uses the Agent Development Kit (ADK) along with the A2A protocol to create a simple "Hotel finder and table reservation" agent that is hosted as an A2A server.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ This sample uses the Agent Development Kit (ADK) along with the A2A protocol to 
 1. Navigate to the samples directory:
 
     ```bash
-    cd a2a_samples/a2ui_restaurant_finder
+    cd a2a_samples/a2ui_hotel_finder
     ```
 
 2. Create an environment file with your API key:

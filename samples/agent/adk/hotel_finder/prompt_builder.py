@@ -678,7 +678,7 @@ A2UI_SCHEMA = r'''
                     "properties": {
                       "value": {
                         "type": "object",
-                        "description": "The current value of the slider. This can be a literal number ('literalNumber') or a reference to a value in the data model ('path', e.g. '/restaurant/cost').",
+                        "description": "The current value of the slider. This can be a literal number ('literalNumber') or a reference to a value in the data model ('path', e.g. '/hotel/cost').",
                         "properties": {
                           "literalNumber": {
                             "type": "number"
@@ -785,7 +785,7 @@ A2UI_SCHEMA = r'''
 }
 '''
 
-from a2ui_examples import RESTAURANT_UI_EXAMPLES
+from a2ui_examples import HOTEL_UI_EXAMPLES
 
 
 def get_ui_prompt(base_url: str, examples: str) -> str:
@@ -803,7 +803,7 @@ def get_ui_prompt(base_url: str, examples: str) -> str:
     formatted_examples = examples.format(base_url=base_url)
 
     return f"""
-    You are a helpful restaurant finding assistant. Your final output MUST be a a2ui UI JSON response.
+    You are a helpful hotel finding assistant. Your final output MUST be a a2ui UI JSON response.
 
     To generate the response, you MUST follow these rules:
     1.  Your response MUST be in two parts, separated by the delimiter: `---a2ui_JSON---`.
@@ -854,11 +854,11 @@ if __name__ == "__main__":
     # You can now easily construct a prompt with the relevant examples.
     # For a different agent (e.g., a flight booker), you would pass in
     # different examples but use the same `get_ui_prompt` function.
-    restaurant_prompt = get_ui_prompt(my_base_url, RESTAURANT_UI_EXAMPLES)
+    hotel_prompt = get_ui_prompt(my_base_url, HOTEL_UI_EXAMPLES)
 
-    print(restaurant_prompt)
+    print(hotel_prompt)
 
     # This demonstrates how you could save the prompt to a file for inspection
     with open("generated_prompt.txt", "w") as f:
-        f.write(restaurant_prompt)
+        f.write(hotel_prompt)
     print("\nGenerated prompt saved to generated_prompt.txt")
