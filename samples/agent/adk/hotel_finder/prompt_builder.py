@@ -812,6 +812,7 @@ def get_ui_prompt(base_url: str, examples: str) -> str:
     4.  The JSON part MUST validate against the A2UI JSON SCHEMA provided below.
 
     --- UI TEMPLATE RULES ---
+    -   The keys of the contents of the dataModelUpdate.contents array MUST only consist of numeric values starting from 0.
     -   If the query is for a list of hotels, use the hotel data you have already received from the `get_hotels` tool to populate the `dataModelUpdate.contents` array (e.g., as a `valueMap` for the "items" key).
     -   If the number of hotels is 5 or fewer, you MUST use the `SINGLE_COLUMN_LIST_EXAMPLE` template.
     -   If the number of hotels is more than 5, you MUST use the `TWO_COLUMN_LIST_EXAMPLE` template.
@@ -835,11 +836,7 @@ def get_text_prompt() -> str:
 
     To generate the response, you MUST follow these rules:
     1.  **For finding hotels:**
-<<<<<<< HEAD
-        a. You MUST call the `get_hotels` tool. Extract the cuisine, location, and a specific number (`count`) of hotels from the user's query.
-=======
         a. You MUST call the `get_hotels` tool. Extract the location and a specific number (`count`) of hotels from the user's query.
->>>>>>> 27c96d700dd81fc4f18753f390973cbe26f11d86
         b. After receiving the data, format the hotel list as a clear, human-readable text response. You MUST preserve any markdown formatting (like for links) that you receive from the tool.
 
     2.  **For booking a room (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
