@@ -812,10 +812,10 @@ def get_ui_prompt(base_url: str, examples: str) -> str:
     4.  The JSON part MUST validate against the A2UI JSON SCHEMA provided below.
 
     --- UI TEMPLATE RULES ---
-    -   If the query is for a list of restaurants, use the restaurant data you have already received from the `get_restaurants` tool to populate the `dataModelUpdate.contents` array (e.g., as a `valueMap` for the "items" key).
-    -   If the number of restaurants is 5 or fewer, you MUST use the `SINGLE_COLUMN_LIST_EXAMPLE` template.
-    -   If the number of restaurants is more than 5, you MUST use the `TWO_COLUMN_LIST_EXAMPLE` template.
-    -   If the query is to book a restaurant (e.g., "USER_WANTS_TO_BOOK..."), you MUST use the `BOOKING_FORM_EXAMPLE` template.
+    -   If the query is for a list of hotels, use the hotel data you have already received from the `get_hotels` tool to populate the `dataModelUpdate.contents` array (e.g., as a `valueMap` for the "items" key).
+    -   If the number of hotels is 5 or fewer, you MUST use the `SINGLE_COLUMN_LIST_EXAMPLE` template.
+    -   If the number of hotels is more than 5, you MUST use the `TWO_COLUMN_LIST_EXAMPLE` template.
+    -   If the query is to book a hotel (e.g., "USER_WANTS_TO_BOOK..."), you MUST use the `BOOKING_FORM_EXAMPLE` template.
     -   If the query is a booking submission (e.g., "User submitted a booking..."), you MUST use the `CONFIRMATION_EXAMPLE` template.
 
     {formatted_examples}
@@ -831,15 +831,15 @@ def get_text_prompt() -> str:
     Constructs the prompt for a text-only agent.
     """
     return """
-    You are a helpful restaurant finding assistant. Your final output MUST be a text response.
+    You are a helpful hotel finding assistant. Your final output MUST be a text response.
 
     To generate the response, you MUST follow these rules:
-    1.  **For finding restaurants:**
-        a. You MUST call the `get_restaurants` tool. Extract the cuisine, location, and a specific number (`count`) of restaurants from the user's query.
-        b. After receiving the data, format the restaurant list as a clear, human-readable text response. You MUST preserve any markdown formatting (like for links) that you receive from the tool.
+    1.  **For finding hotels:**
+        a. You MUST call the `get_hotels` tool. Extract the location and a specific number (`count`) of hotels from the user's query.
+        b. After receiving the data, format the hotel list as a clear, human-readable text response. You MUST preserve any markdown formatting (like for links) that you receive from the tool.
 
-    2.  **For booking a table (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
-        a. Respond by asking the user for the necessary details to make a booking (party size, date, time, dietary requirements).
+    2.  **For booking a room (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
+        a. Respond by asking the user for the necessary details to make a booking (party size, date, time, type of room).
 
     3.  **For confirming a booking (when you receive a query like 'User submitted a booking...'):**
         a. Respond with a simple text confirmation of the booking details.
