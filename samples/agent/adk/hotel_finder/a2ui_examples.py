@@ -126,14 +126,14 @@ HOTEL_UI_EXAMPLES = """
   {{ "surfaceUpdate": {{
     "surfaceId": "booking-form",
     "components": [
-      {{ "id": "booking-form-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["booking-title", "hotel-image", "hotel-address", "party-size-field", "datetime-field", "dietary-field", "submit-button"] }} }} }} }},
+      {{ "id": "booking-form-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["booking-title", "hotel-image", "hotel-address", "party-size-field", "datetime-field", "room-type-field", "submit-button"] }} }} }} }},
       {{ "id": "booking-title", "component": {{ "Text": {{ "usageHint": "h2", "text": {{ "path": "title" }} }} }} }},
       {{ "id": "hotel-image", "component": {{ "Image": {{ "url": {{ "path": "imageUrl" }} }} }} }},
       {{ "id": "hotel-address", "component": {{ "Text": {{ "text": {{ "path": "address" }} }} }} }},
       {{ "id": "party-size-field", "component": {{ "TextField": {{ "label": {{ "literalString": "Party Size" }}, "text": {{ "path": "partySize" }}, "type": "number" }} }} }},
       {{ "id": "datetime-field", "component": {{ "DateTimeInput": {{ "label": {{ "literalString": "Date & Time" }}, "value": {{ "path": "reservationTime" }}, "enableDate": true, "enableTime": true }} }} }},
-      {{ "id": "dietary-field", "component": {{ "TextField": {{ "label": {{ "literalString": "Dietary Requirements" }}, "text": {{ "path": "dietary" }} }} }} }},
-      {{ "id": "submit-button", "component": {{ "Button": {{ "child": "submit-reservation-text", "action": {{ "name": "submit_booking", "context": [ {{ "key": "hotelName", "value": {{ "path": "hotelName" }} }}, {{ "key": "partySize", "value": {{ "path": "partySize" }} }}, {{ "key": "reservationTime", "value": {{ "path": "reservationTime" }} }}, {{ "key": "dietary", "value": {{ "path": "dietary" }} }}, {{ "key": "imageUrl", "value": {{ "path": "imageUrl" }} }} ] }} }} }} }},
+      {{ "id": "room-type-field", "component": {{ "TextField": {{ "label": {{ "literalString": "Room Type" }}, "text": {{ "path": "roomType" }} }} }} }},
+      {{ "id": "submit-button", "component": {{ "Button": {{ "child": "submit-reservation-text", "action": {{ "name": "submit_booking", "context": [ {{ "key": "hotelName", "value": {{ "path": "hotelName" }} }}, {{ "key": "partySize", "value": {{ "path": "partySize" }} }}, {{ "key": "reservationTime", "value": {{ "path": "reservationTime" }} }}, {{ "key": "roomType", "value": {{ "path": "roomType" }} }}, {{ "key": "imageUrl", "value": {{ "path": "imageUrl" }} }} ] }} }} }} }},
       {{ "id": "submit-reservation-text", "component": {{ "Text": {{ "text": {{ "literalString": "Submit Reservation" }} }} }} }}
     ]
   }} }},
@@ -146,7 +146,7 @@ HOTEL_UI_EXAMPLES = """
       {{ "key": "hotelName", "valueString": "[HotelName]" }},
       {{ "key": "partySize", "valueString": "2" }},
       {{ "key": "reservationTime", "valueString": "" }},
-      {{ "key": "dietary", "valueString": "" }},
+      {{ "key": "roomType", "valueString": "" }},
       {{ "key": "imageUrl", "valueString": "" }}
     ]
   }} }}
@@ -160,11 +160,11 @@ HOTEL_UI_EXAMPLES = """
     "surfaceId": "confirmation",
     "components": [
       {{ "id": "confirmation-card", "component": {{ "Card": {{ "child": "confirmation-column" }} }} }},
-      {{ "id": "confirmation-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["confirm-title", "confirm-image", "divider1", "confirm-details", "divider2", "confirm-dietary", "divider3", "confirm-text"] }} }} }} }},
+      {{ "id": "confirmation-column", "component": {{ "Column": {{ "children": {{ "explicitList": ["confirm-title", "confirm-image", "divider1", "confirm-details", "divider2", "confirm-room-type", "divider3", "confirm-text"] }} }} }} }},
       {{ "id": "confirm-title", "component": {{ "Text": {{ "usageHint": "h2", "text": {{ "path": "title" }} }} }} }},
       {{ "id": "confirm-image", "component": {{ "Image": {{ "url": {{ "path": "imageUrl" }} }} }} }},
       {{ "id": "confirm-details", "component": {{ "Text": {{ "text": {{ "path": "bookingDetails" }} }} }} }},
-      {{ "id": "confirm-dietary", "component": {{ "Text": {{ "text": {{ "path": "dietaryRequirements" }} }} }} }},
+      {{ "id": "confirm-room-type", "component": {{ "Text": {{ "text": {{ "path": "roomType" }} }} }} }},
       {{ "id": "confirm-text", "component": {{ "Text": {{ "usageHint": "h5", "text": {{ "literalString": "We look forward to seeing you!" }} }} }} }},
       {{ "id": "divider1", "component": {{ "Divider": {{}} }} }},
       {{ "id": "divider2", "component": {{ "Divider": {{}} }} }},
@@ -177,7 +177,7 @@ HOTEL_UI_EXAMPLES = """
     "contents": [
       {{ "key": "title", "valueString": "Booking at [HotelName]" }},
       {{ "key": "bookingDetails", "valueString": "[PartySize] people at [Time]" }},
-      {{ "key": "dietaryRequirements", "valueString": "Dietary Requirements: [Requirements]" }},
+      {{ "key": "roomType", "valueString": "Room Type: [RoomType]" }},
       {{ "key": "imageUrl", "valueString": "[ImageUrl]" }}
     ]
   }} }}

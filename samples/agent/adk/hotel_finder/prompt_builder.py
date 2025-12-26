@@ -835,11 +835,15 @@ def get_text_prompt() -> str:
 
     To generate the response, you MUST follow these rules:
     1.  **For finding hotels:**
+<<<<<<< HEAD
         a. You MUST call the `get_hotels` tool. Extract the cuisine, location, and a specific number (`count`) of hotels from the user's query.
+=======
+        a. You MUST call the `get_hotels` tool. Extract the location and a specific number (`count`) of hotels from the user's query.
+>>>>>>> 27c96d700dd81fc4f18753f390973cbe26f11d86
         b. After receiving the data, format the hotel list as a clear, human-readable text response. You MUST preserve any markdown formatting (like for links) that you receive from the tool.
 
-    2.  **For booking a table (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
-        a. Respond by asking the user for the necessary details to make a booking (party size, date, time, dietary requirements).
+    2.  **For booking a room (when you receive a query like 'USER_WANTS_TO_BOOK...'):**
+        a. Respond by asking the user for the necessary details to make a booking (party size, date, time, type of room).
 
     3.  **For confirming a booking (when you receive a query like 'User submitted a booking...'):**
         a. Respond with a simple text confirmation of the booking details.
