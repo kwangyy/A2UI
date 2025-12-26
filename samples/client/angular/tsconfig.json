@@ -37,13 +37,16 @@
       "path": "./projects/lib/tsconfig.lib.json"
     },
     {
-      "path": "./projects/lib/tsconfig.spec.json"
-    },
-    {
       "path": "./projects/restaurant/tsconfig.app.json"
     },
     {
       "path": "./projects/restaurant/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hotel/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/hotel/tsconfig.spec.json"
     },
     {
       "path": "./projects/rizzcharts/tsconfig.app.json"
